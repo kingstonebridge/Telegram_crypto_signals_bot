@@ -1,5 +1,4 @@
 # Save as: mega_crypto_bot.py
-import os
 import asyncio
 import sqlite3
 import time
@@ -9,8 +8,23 @@ import random
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
+import os
+from dotenv import load_dotenv
+
+# Add at the top
+from keep_alive import keep_alive
+
+# Add before bot.run()
+# Load environment variables
+load_dotenv()
 
 # === CONFIGURATION ===
+BOT_TOKEN = os.getenv('BOT_TOKEN', "8551812823:AAHVeXJg4aGc3pL73KRowK51yrteWaH7YcY")
+ADMIN_ID = os.getenv('ADMIN_ID', "5665906172")
+YOUR_USDT_WALLET = os.getenv('YOUR_USDT_WALLET', "0x9E66D726F13C9A1F22cC7e5A4a308d3BA183599a")
+# === END CONFIGURATION ===
+# === CONFIGURATION ===
+
 BOT_TOKEN = "8451690160:AAGTXV2d4w9QeOngfEAwkxJkU5_0Hhsgarc"
 ADMIN_ID = "5665906172"
 YOUR_USDT_WALLET = "0x9E66D726F13C9A1F22cC7e5A4a308d3BA183599a"
@@ -617,4 +631,7 @@ class UltimateCryptoBot:
 # === MAIN EXECUTION ===
 if __name__ == "__main__":
     bot = UltimateCryptoBot(BOT_TOKEN)
+    keep_alive()
+
+# Add before bot.run()
     bot.run()
